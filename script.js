@@ -16,6 +16,16 @@ var containsSpecial = RegExp(/[?!@#$%^&*()_+=]/)
 // Generate password 
 function generatePassword() {
 
+  // Password length preference
+  var passLength = prompt("How many characters would you like (Pick a number between 8 and 128)?")
+
+  // Password length validator
+  while (parseInt(passLength) < 8 || parseInt(passLength) > 128 || isNaN(passLength) || passLength.trim() === "") {
+    alert("You must enter a number between 8 and 128 (you may not use letters, special characters, or spaces).")
+    passLength = prompt("How many characters would you like (Pick a number between 8 and 128)?")
+  }
+
+
   // Password character preference
   var wantUpper = confirm("Would you like upper-case letters?")
   var wantLower = confirm("Would you like lower-case letters?")
@@ -29,15 +39,6 @@ function generatePassword() {
     wantLower = confirm("Would you like lower-case letters?")
     wantNums = confirm("Would you like numbers?")
     wantSpecial = confirm("Finally, would you like special characters?")
-  }
-
-  // Password length preference
-  var passLength = prompt("How many characters would you like (Pick a number between 8 and 128)?")
-
-  // Password length validator
-  while (parseInt(passLength) < 8 || parseInt(passLength) > 128 || isNaN(passLength) || passLength.trim() === "") {
-    alert("You must enter a number between 8 and 128 (you may not use letters).")
-    passLength = prompt("How many characters would you like (Pick a number between 8 and 128)?")
   }
 
   // Set up while loop
