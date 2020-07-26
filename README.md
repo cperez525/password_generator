@@ -6,8 +6,8 @@ Deployed App URL: https://cperez525.github.io/password_generator/
 
 Screenshots:
 
-1) Password Generator Page (default)-  ![Screenshot](images/default_password_generator_page.jpg)
+1) Password Generator Page (default)-  ![Screenshot](images/default_password_generator_page.JPG)
 
-2) Password Generator Page w/ generated password - ![Screenshot](images/password_generator_page_with_password.jpg)
+2) Password Generator Page w/ generated password - ![Screenshot](images/password_generator_page_with_password.JPG)
 
 
