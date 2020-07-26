@@ -54,33 +54,28 @@ function generatePassword() {
     passArray += specialChar.join("")
   }
 
-
-  console.log(passArray)
-
   if (wantUpper || wantLower || wantNums || wantSpecial) {
 
     for (i = 0; i < passLength; i++) {
 
       randomPw += passArray[Math.floor(Math.random() * passArray.length)]
     }
-
-    console.log(randomPw)
   }
-
+  
+  return randomPw
 
 }
 generatePassword()
 
-/*
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
 
   passwordText.value = password;
 
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword); */
+generateBtn.addEventListener("click", writePassword);
