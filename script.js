@@ -16,7 +16,6 @@ while (parseInt(passLength) < 8 || parseInt(passLength) > 128 || isNaN(passLengt
   passLength = prompt("How many characters would you like (Pick a number between 8 and 128)?")
 }
 
-
 // Password character preference
 var wantUpper = confirm("Would you like upper-case letters?")
 var wantLower = confirm("Would you like lower-case letters?")
@@ -30,6 +29,21 @@ while (!wantUpper && !wantLower && !wantNums && !wantSpecial) {
   wantLower = confirm("Would you like lower-case letters?")
   wantNums = confirm("Would you like numbers?")
   wantSpecial = confirm("Finally, would you like special characters?")
+}
+
+// Regular expressions to form checks for user-selected character types
+var containsUpper = RegExp(/[A-Z]/)
+var containsLower = RegExp(/[a-z]/)
+var containsNum = RegExp(/[0-9]/)
+var containsSpecial = RegExp(/[?!@#$%^&*()_+=]/)
+
+var testStr = "J59kk2kkf"
+
+if (containsSpecial.test(testStr)){
+  alert("Yes")
+}
+else{
+  alert("No")
 }
 
 // Generate password 
@@ -59,6 +73,8 @@ function generatePassword() {
     for (i = 0; i < passLength; i++) {
 
       randomPw += passArray[Math.floor(Math.random() * passArray.length)]
+
+     // if (wantUpper && )
     }
   }
   
