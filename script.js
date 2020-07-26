@@ -7,47 +7,41 @@ var lowerCaseChar = "abcdefghijklmnopqrstuvwxyz".split("")
 var numberChar = "0123456789".split("")
 var specialChar = "?!@#$%^&*()_+=".split("")
 
-// Password length preference
-var passLength = prompt("How many characters would you like (Pick a number between 8 and 128)?")
-
-// Password length validator
-while (parseInt(passLength) < 8 || parseInt(passLength) > 128 || isNaN(passLength) ||  passLength.trim() === "") {
-  alert("You must enter a number between 8 and 128 (you may not use letters).")
-  passLength = prompt("How many characters would you like (Pick a number between 8 and 128)?")
-}
-
-// Password character preference
-var wantUpper = confirm("Would you like upper-case letters?")
-var wantLower = confirm("Would you like lower-case letters?")
-var wantNums = confirm("Would you like numbers?")
-var wantSpecial = confirm("Finally, would you like special characters?")
-
-// Password character preference check (ensures user chooses at least one type of character)
-while (!wantUpper && !wantLower && !wantNums && !wantSpecial) {
-  alert("You must choose at least one type of character for your password!")
-  wantUpper = confirm("Would you like upper-case letters?")
-  wantLower = confirm("Would you like lower-case letters?")
-  wantNums = confirm("Would you like numbers?")
-  wantSpecial = confirm("Finally, would you like special characters?")
-}
-
 // Regular expressions to form checks for user-selected character types
 var containsUpper = RegExp(/[A-Z]/)
 var containsLower = RegExp(/[a-z]/)
 var containsNum = RegExp(/[0-9]/)
 var containsSpecial = RegExp(/[?!@#$%^&*()_+=]/)
 
-var testStr = "J59kk2kkf"
-
-if (containsSpecial.test(testStr)){
-  alert("Yes")
-}
-else{
-  alert("No")
-}
-
 // Generate password 
 function generatePassword() {
+
+  // Password character preference
+  var wantUpper = confirm("Would you like upper-case letters?")
+  var wantLower = confirm("Would you like lower-case letters?")
+  var wantNums = confirm("Would you like numbers?")
+  var wantSpecial = confirm("Finally, would you like special characters?")
+
+  // Password character preference check (ensures user chooses at least one type of character)
+  while (!wantUpper && !wantLower && !wantNums && !wantSpecial) {
+    alert("You must choose at least one type of character for your password!")
+    wantUpper = confirm("Would you like upper-case letters?")
+    wantLower = confirm("Would you like lower-case letters?")
+    wantNums = confirm("Would you like numbers?")
+    wantSpecial = confirm("Finally, would you like special characters?")
+  }
+
+  // Password length preference
+  var passLength = prompt("How many characters would you like (Pick a number between 8 and 128)?")
+
+  // Password length validator
+  while (parseInt(passLength) < 8 || parseInt(passLength) > 128 || isNaN(passLength) || passLength.trim() === "") {
+    alert("You must enter a number between 8 and 128 (you may not use letters).")
+    passLength = prompt("How many characters would you like (Pick a number between 8 and 128)?")
+  }
+
+  // Set up while loop
+  var i = 0
 
   var passArray = ""
   var randomPw = ""
@@ -70,18 +64,24 @@ function generatePassword() {
 
   if (wantUpper || wantLower || wantNums || wantSpecial) {
 
-    for (i = 0; i < passLength; i++) {
+    while (i < passLength) {
 
       randomPw += passArray[Math.floor(Math.random() * passArray.length)]
+      i++
 
-     // if (wantUpper && )
+      if (i == passLength && wantUpper && containsUpper.test(randomPw) === false ||
+        i == passLength && wantLower && containsLower.test(randomPw) === false ||
+        i == passLength && wantNums && containsNum.test(randomPw) === false ||
+        i == passLength && wantSpecial && containsSpecial.test(randomPw) === false) {
+
+        i = 0
+        randomPw = ""
+      }
     }
   }
-  
-  return randomPw
 
+  return randomPw
 }
-generatePassword()
 
 
 // Write password to the #password input
